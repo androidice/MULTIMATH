@@ -1,5 +1,5 @@
 /*defining a function*/
-var scoreboard = function(){
+var Scoreboard = function(){
 
  var results = [];
 
@@ -27,4 +27,4 @@ var scoreboard = function(){
    addResult: addResult,
    updateScoreboard: updateScoreboard
  }
-}();// self invoke the function
+};

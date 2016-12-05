@@ -42,6 +42,7 @@ var game = function () {
       factor: factorElement.value
     }
 
+    var scoreboard = new Scoreboard();
     scoreboard.addResult(result);
     scoreboard.updateScoreboard();
 
