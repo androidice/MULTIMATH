@@ -1,0 +1,15 @@
+{
+  "name": "multimath",
+  "version": "1.0.0",
+  "description": "JavaScript Module Fundamentals ES5",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -p 3000"
+  },
+  "author": "Kevin A. Alviola",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^0.9.0"
+  }
+}
