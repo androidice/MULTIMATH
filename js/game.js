@@ -1,68 +1,65 @@
-var game = function () {
-  var factorElement = document.getElementById('factor');
-  var problemPerGame = 3; // set default value;
+define(['./player', './scoreboard'], function(player, scoreboard){
+    var factorElement = document.getElementById('factor');
+    var problemPerGame = 3; // set default value;
 
-  function printGame(){
-    player.logPlayer();
+    function printGame(){
+      player.logPlayer();
 
-    setProblemCount(document.getElementById('problemCount').value);
+      setProblemCount(document.getElementById('problemCount').value);
 
-    var gameFrom = '';
-    for (var i=1; i<= problemPerGame; i++){
-      gameFrom += '<div class="form-group">';
-      gameFrom += '<label for="answer"'+ i +' = </label>';
-      gameFrom += factorElement.value + ' x '+ i + '</label>'
-      gameFrom += `<div class="col-sm-1"><input type="text" class="form-control" id="answer${i}"></div>`;
-      gameFrom += '</div>'
+      var gameFrom = '';
+      for (var i=1; i<= problemPerGame; i++){
+        gameFrom += '<div class="form-group">';
+        gameFrom += '<label for="answer"'+ i +' = </label>';
+        gameFrom += factorElement.value + ' x '+ i + '</label>'
+        gameFrom += `<div class="col-sm-1"><input type="text" class="form-control" id="answer${i}"></div>`;
+        gameFrom += '</div>'
+      }
+
+      var gameElement = document.getElementById('game');
+      gameElement.innerHTML = gameFrom;
+
+      document.getElementById('calculate').removeAttribute('disabled');
     }
 
-    var gameElement = document.getElementById('game');
-    gameElement.innerHTML = gameFrom;
+    function calculateScore(){
+      var problemsInGame = getProblemCount();
+      var score = 0;
 
-    document.getElementById('calculate').removeAttribute('disabled');
-  }
-
-
-
-  function calculateScore(){
-    var problemsInGame = getProblemCount();
-    var score = 0;
-
-    for(var i=1; i<=problemsInGame; i++){
+      for(var i=1; i<=problemsInGame; i++){
         var answer = document.getElementById('answer'+ i).value;
         if(i* parseInt(factorElement.value, 10) === parseInt(answer, 10)){
           score++;
         }
+      }
+
+      var result = {
+        name: player.getName(),
+        score: score,
+        problems: problemsInGame,
+        factor: factorElement.value
+      }
+
+      scoreboard.addResult(result);
+      scoreboard.updateScoreboard();
+
+      document.getElementById('calculate').setAttribute('disabled', true);
     }
 
-    var result = {
-      name: player.getName(),
-      score: score,
-      problems: problemsInGame,
-      factor: factorElement.value
+
+    function getProblemCount(){
+      return parseInt(problemPerGame, 10);
     }
 
-    var scoreboard = new Scoreboard();
-    scoreboard.addResult(result);
-    scoreboard.updateScoreboard();
+    function setProblemCount(newProblemCount) {
+      problemPerGame = newProblemCount;
+    }
 
-    document.getElementById('calculate').setAttribute('disabled', true);
-  }
-
-
-  function getProblemCount(){
-    return parseInt(problemPerGame, 10);
-  }
-
-  function setProblemCount(newProblemCount) {
-    problemPerGame = newProblemCount;
-  }
-
-  return {
-    printGame: printGame,
-    calculateScore: calculateScore,
-    getProblemCount: getProblemCount,
-    setProblemCount: setProblemCount,
-    getProblemCount: getProblemCount
-  }
-}();
+    return {
+      printGame: printGame,
+      calculateScore: calculateScore,
+      getProblemCount: getProblemCount,
+      setProblemCount: setProblemCount,
+      getProblemCount: getProblemCount
+    }
+  });
