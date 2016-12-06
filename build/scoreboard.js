@@ -1,10 +1,15 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /*defining a function*/
 
 console.log('Creating a scoreboard');
 
 var results = [];
 
-function addResult(newResult){
+function addResult(newResult) {
   results.push(newResult);
 }
 
@@ -13,15 +18,16 @@ function updateScoreboard() {
   var factor = document.getElementById('factor');
 
   //loop over all results and create html for the scoreboard
-  for(var index = 0; index < results.length; index++){
+  for (var index = 0; index < results.length; index++) {
     var result = results[index];
-    output+='<h4>';
-    output+= result.name + ' : ' + result.score + '/' + result.problems + ' factor Of ' + factor.value;
-    output+='</h4>'
+    output += '<h4>';
+    output += result.name + ' : ' + result.score + '/' + result.problems + ' factor Of ' + factor.value;
+    output += '</h4>';
   }
 
   var scoresElement = document.getElementById('scores');
   scoresElement.innerHTML = output;
 }
 
-export { addResult, updateScoreboard };
+exports.addResult = addResult;
+exports.updateScoreboard = updateScoreboard;

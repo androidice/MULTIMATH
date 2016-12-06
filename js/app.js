@@ -1,17 +1,17 @@
-var player = require('./player.js');
-var game = require('./game.js');
+import assignPlayerName from './player.js';
+import { printGame, calculateScore, getProblemCount } from './game.js';
 
 console.log('Starting with an SystemJS');
 
 document.getElementById('startGame').addEventListener('click', function(){
-  player.setName(document.getElementById('playername').value);
-  game.printGame();
+  assignPlayerName(document.getElementById('playername').value);
+  printGame();
 });
 
 document.getElementById('calculate').addEventListener('click', function(){
-  game.calculateScore();
+  calculateScore();
 });
 
-document.getElementById('problemCount').value = game.getProblemCount();
+document.getElementById('problemCount').value = getProblemCount();
 
 
