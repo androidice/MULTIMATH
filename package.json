@@ -10,7 +10,8 @@
   "author": "Kevin A. Alviola",
   "license": "ISC",
   "devDependencies": {
-    "http-server": "^0.9.0"
+    "http-server": "^0.9.0",
+    "systemjs": "^0.19.41"
   },
   "dependencies": {
     "requirejs": "^2.3.2"

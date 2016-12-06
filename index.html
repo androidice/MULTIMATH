@@ -18,7 +18,18 @@
     <div id="scores" style="display: block"></div>
 
     <!--Script here-->
-    <script data-main="js/app" src="node_modules/requirejs/require.js"></script>
+    <script src="node_modules/systemjs/dist/system.js"></script>
+
+    <script>
+      System.config({
+        meta: {
+          format: 'cjs'
+        }
+      });
+      System.import('js/app.js');
+    </script>
+
+    <!--<script data-main="js/app" src="node_modules/requirejs/require.js"></script>-->
 
     <!--<script type="text/javascript" src="js/player.js"></script>
     <script type="text/javascript" src="js/game.js"></script>
